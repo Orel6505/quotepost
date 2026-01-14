@@ -10,7 +10,8 @@ const authorDisplay = document.getElementById('author-display');
 const textDisplay = document.getElementById('text-display');
 const quoteImg = document.getElementById('quote-img');
 const fileInput = document.getElementById('file-input');
-const customColorInput = document.getElementById('custom-color');
+const customColorInput = document.getElementById('custom-color-input');
+const customColorBox = document.getElementById('custom-color');
 
 const lightTextToggle = document.getElementById('light-text-toggle');
 const bgSquareToggle = document.getElementById('bg-square-toggle');
@@ -67,14 +68,17 @@ document.querySelectorAll('.color-box').forEach(box => {
     box.addEventListener('click', () => {
         document.querySelectorAll('.color-box').forEach(b => b.classList.remove('selected'));
         box.classList.add('selected');
-        currentColor = box.dataset.color;
-        customColorInput.value = currentColor;
+        if (box.dataset.color) {
+            currentColor = box.dataset.color;
+            customColorInput.value = currentColor;
+        }
         updateQuoteImage();
     });
 });
 
 customColorInput.addEventListener('input', () => {
     document.querySelectorAll('.color-box').forEach(b => b.classList.remove('selected'));
+    customColorBox.classList.add('selected');
     currentColor = customColorInput.value;
     updateQuoteImage();
 });
