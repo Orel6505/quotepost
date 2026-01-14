@@ -1,0 +1,908 @@
+:root {
+    /* Quote Colors */
+    --quote-bg-color: #8fc00c;
+    
+    /* Primary Colors */
+    --primary-purple: #667eea;
+    --primary-purple-hover: #5568d3;
+    --secondary-purple: #764ba2;
+    
+    /* Background Colors - Light Mode */
+    --bg-gradient-light: linear-gradient(135deg, #549aab4d 0%, #8c8c8c 100%);
+    --container-bg-light: white;
+    --card-bg-light: #f9f9f9;
+    --card-bg-selected-light: #f0f4ff;
+    --preview-bg-light: #f5f5f5;
+    
+    /* Background Colors - Dark Mode */
+    --bg-gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    --container-bg-dark: #2d2d44;
+    --card-bg-dark: #1a1a2e;
+    --card-bg-selected-dark: #2a2a4e;
+    --preview-bg-dark: #1a1a2e;
+    --layout-preview-bg-dark: #3a3a5e;
+    
+    /* Text Colors - Light Mode */
+    --text-primary-light: #333;
+    --text-secondary-light: #555;
+    --text-tertiary-light: #666;
+    --text-white: white;
+    
+    /* Text Colors - Dark Mode */
+    --text-primary-dark: #e0e0e0;
+    --text-secondary-dark: #b0b0b0;
+    
+    /* Border Colors */
+    --border-light: #e0e0e0;
+    --border-medium: #ddd;
+    --border-dark: #444;
+    --border-darker: #555;
+    
+    /* Neutral Colors */
+    --neutral-light: #ccc;
+    --neutral-medium: #ddd;
+    --neutral-dark: #555;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: var(--bg-gradient-light);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.dark-mode {
+    background: var(--bg-gradient-dark);
+}
+
+.container {
+    background: var(--card-bg-selected-light);
+    padding: 40px;
+    max-width: 900px;
+    width: 100%;
+}
+
+body.dark-mode .container {
+    background: #2d2d44;
+    color: var(--text-primary-dark);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--text-primary-light);
+    font-size: 2em;
+}
+
+h3 {
+    display: inline;
+}
+
+body.dark-mode h3 {
+    color: var(--text-primary-dark);
+}
+
+body.dark-mode h1 {
+    color: var(--text-primary-dark);
+}
+
+.controls {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9em;
+}
+
+body.dark-mode label {
+    color: #b0b0b0;
+}
+
+input[type="text"],
+textarea {
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1em;
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode textarea {
+    background: #1a1a2e;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #e0e0e0;
+}
+
+body.dark-mode input[type="text"]:focus,
+body.dark-mode textarea:focus {
+    border-color: #444;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.image-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upload-btn {
+    background: #667eea;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+}
+
+.upload-btn:hover {
+    background: #5568d3;
+}
+
+.preview-container {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.preview-container img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+.color-selection {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.color-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.color-box:hover {
+    transform: scale(1.1);
+}
+
+.color-box.selected {
+    border-color: white;
+    box-shadow: 0 0 0 2px #667eea;
+}
+
+#custom-color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--bg-gradient-light);
+    border: 1px solid var(--bg-gradient-light);
+}
+
+#custom-color > input {
+    height: 0px;
+    width: 0px;
+    padding: 0px;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+}
+
+input[type="color"], #custom-color {
+    width: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.layout-selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+    gap: 15px;
+}
+
+.layout-option {
+    border: 3px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 20%;
+}
+
+body.dark-mode .layout-option {
+    background: #1a1a2e;
+    border-color: #444;
+}
+
+.layout-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.layout-option.selected {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+body.dark-mode .layout-option.selected {
+    background: #2a2a4e;
+}
+
+.layout-preview {
+    width: 60px;
+    height: 80px;
+    background: white;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border: 1px solid #ddd;
+}
+
+body.dark-mode .layout-preview {
+    background: #3a3a5e;
+    border-color: #555;
+}
+
+.layout-preview-img {
+    background: #667eea;
+    border-radius: 3px;
+}
+
+.layout-preview-text {
+    background: #ddd;
+    border-radius: 2px;
+    height: 4px;
+}
+
+body.dark-mode .layout-preview-text {
+    background: #555;
+}
+
+.layout-name {
+    font-size: 0.85em;
+    text-align: center;
+    color: #666;
+}
+
+body.dark-mode .layout-name {
+    color: #b0b0b0;
+}
+
+.switches {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: flex-start
+}
+
+.switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.switch {
+    width: 50px;
+    height: 26px;
+    background: #ccc;
+    border-radius: 13px;
+    position: relative;
+    transition: background 0.3s;
+}
+
+body.dark-mode .switch {
+    background: #555;
+}
+
+.switch::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s;
+}
+
+.switch-container.active .switch {
+    background: #667eea;
+}
+
+.switch-container.active .switch::after {
+    left: 26px;
+}
+
+.quote-preview {
+    background: #f5f5f5;
+    border-radius: 15px;
+    padding: 40px;
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+}
+
+body.dark-mode .quote-preview {
+    background: #1a1a2e;
+}
+
+.quote-image {
+    width: 500px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: var(--quote-bg-color);
+}
+
+.quote-header {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.quote-header img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+#quote-img {
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.quote-header-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.quote-author {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.quote-author:focus, .quote-title:focus, .quote-text:focus {
+    outline: none;
+    border: none;
+}
+
+.quote-text {
+    font-size: 1.1em;
+    line-height: 1.6;
+    font-style: italic;
+    outline: none;
+    border: none;
+}
+
+/* Layout 1: Classic (default) - Quote first, then image+info */
+.quote-image.layout-1 .quote-text {
+    order: 1;
+}
+
+.quote-image.layout-1 .quote-header {
+    order: 2;
+}
+
+/* Layout 2: Header First - Image+info first, then quote */
+.quote-image.layout-2 .quote-header {
+    order: 1;
+}
+
+.quote-image.layout-2 .quote-text {
+    order: 2;
+}
+
+/* Layout 3: Full Width Image Top - Image spans full width, quote, then title+author */
+.quote-image.layout-3 {
+    padding: 0;
+    gap: 0;
+}
+
+.quote-image.layout-3 .quote-header {
+    padding: 0;
+    flex-direction: column;
+    gap: 0;
+    order: 1;
+}
+
+.quote-image.layout-3 .quote-header img {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+}
+
+.quote-image.layout-3 .quote-text {
+    padding: 30px 40px 20px 40px;
+    order: 2;
+}
+
+.quote-image.layout-3 .quote-header-text {
+    padding: 20px 40px 40px 40px;
+    text-align: center;
+    order: 3;
+}
+
+/* Layout 4: Full Width Image Bottom - Quote, title+author, then full-width image */
+.quote-image.layout-4 {
+    padding: 0;
+    gap: 0;
+}
+
+.quote-image.layout-4 .quote-text {
+    padding: 40px 40px 20px 40px;
+    order: 1;
+}
+
+.quote-image.layout-4 .quote-header {
+    padding: 0;
+    flex-direction: column;
+    gap: 0;
+    order: 2;
+}
+
+.quote-image.layout-4 .quote-header-text {
+    padding: 20px 40px 30px 40px;
+    text-align: center;
+    order: 1;
+}
+
+.quote-image.layout-4 .quote-header img {
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+    order: 2;
+}
+
+/* Layout 5: Centered - Everything centered, image on top */
+.quote-image.layout-5 {
+    align-items: center;
+    text-align: center;
+}
+
+.quote-image.layout-5 .quote-header {
+    flex-direction: column;
+    order: 1;
+}
+
+.quote-image.layout-5 .quote-header img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.quote-image.layout-5 .quote-text {
+    order: 2;
+}
+
+.quote-image.layout-5 #quote-img {
+    border-radius: 50%;
+}
+
+/* Layout 6: Minimalist - Small image, quote, compact info */
+.quote-image.layout-6 {
+    gap: 20px;
+}
+
+.quote-image.layout-6 .quote-header {
+    order: 1;
+    gap: 15px;
+}
+
+.quote-image.layout-6 .quote-header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+}
+
+.quote-image.layout-6 .quote-title {
+    font-size: 1em;
+}
+
+.quote-image.layout-6 .quote-author {
+    font-size: 0.85em;
+}
+
+.quote-image.layout-6 .quote-text {
+    order: 2;
+    font-size: 1em;
+}
+
+.quote-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: inherit;
+}
+
+.quote-image.light-text {
+    color: white;
+}
+
+/* Background square styling */
+.quote-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.bg-square-layer {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--quote-bg-color);
+    opacity: 0.15;
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.quote-wrapper.bg-square {
+    padding: 20px;
+}
+
+.quote-wrapper.bg-square .bg-square-layer {
+    display: block;
+}
+
+.quote-wrapper.bg-square .quote-image {
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.download-btn {
+    background: #667eea;
+    color: white;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    width: 100%;
+    transition: background 0.3s;
+    font-weight: 600;
+}
+
+.download-btn:hover {
+    background: #5568d3;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.dark-mode .theme-toggle {
+    background: #2d2d44;
+    color: #e0e0e0;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+}
+
+footer div a {
+    text-decoration: none;
+    color: var(--text-primary-light);
+}
+
+footer div a h3 {
+    font-weight: 800;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Tablet and smaller laptops */
+@media (max-width: 992px) {
+    .container {
+        padding: 30px;
+        max-width: 100%;
+    }
+
+    .layout-option {
+        width: 28%;
+    }
+
+    .quote-preview {
+        justify-content: center;
+    }
+
+    .quote-image {
+        transform: scale(0.9);
+        transform-origin: center;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 25px;
+        border-radius: 15px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+    }
+
+    .quote-preview {
+        padding: 25px;
+        margin: 20px 0;
+        justify-content: center;
+    }
+
+    .quote-image {
+        transform: scale(0.75);
+        transform-origin: center;
+    }
+
+    .layout-option {
+        width: 30%;
+        padding: 10px;
+    }
+
+    .layout-preview {
+        width: 50px;
+        height: 65px;
+    }
+
+    .layout-name {
+        font-size: 0.75em;
+    }
+
+    .color-box {
+        width: 40px;
+        height: 40px;
+    }
+
+    input[type="color"] {
+        width: 40px;
+        height: 40px;
+    }
+
+    .download-btn {
+        padding: 14px 24px;
+        font-size: 1em;
+    }
+
+    .theme-toggle {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3em;
+        top: 15px;
+        right: 15px;
+    }
+}
+
+/* Large phones */
+@media (max-width: 576px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 20px;
+        border-radius: 12px;
+    }
+
+    h1 {
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+
+    .quote-preview {
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 10px;
+        justify-content: center;
+    }
+
+    .quote-image {
+        transform: scale(0.6);
+        transform-origin: center;
+    }
+
+    .controls {
+        gap: 15px;
+    }
+
+    .input-group {
+        gap: 6px;
+    }
+
+    label {
+        font-size: 0.85em;
+    }
+
+    .layout-selection {
+        gap: 10px;
+    }
+
+    .layout-option {
+        width: 45%;
+        padding: 8px;
+    }
+
+    .layout-preview {
+        width: 45px;
+        height: 55px;
+        padding: 4px;
+    }
+
+    .layout-name {
+        font-size: 0.7em;
+    }
+
+    .color-selection {
+        gap: 8px;
+    }
+
+    .color-box {
+        width: 35px;
+        height: 35px;
+        border-width: 2px;
+    }
+
+    input[type="color"] {
+        width: 35px;
+        height: 35px;
+    }
+
+    .custom-color {
+        gap: 6px;
+    }
+
+    .custom-color span {
+        font-size: 0.85em;
+    }
+
+    .switches {
+        gap: 8px;
+    }
+
+    .switch-container {
+        gap: 8px;
+        font-size: 0.9em;
+    }
+
+    .switch {
+        width: 44px;
+        height: 24px;
+    }
+
+    .switch::after {
+        width: 20px;
+        height: 20px;
+    }
+
+    .switch-container.active .switch::after {
+        left: 22px;
+    }
+
+    .download-btn {
+        padding: 12px 20px;
+        font-size: 0.95em;
+        border-radius: 8px;
+    }
+
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+/* Small phones */
+@media (max-width: 400px) {
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    .quote-image {
+        transform: scale(0.5);
+        transform-origin: center;
+    }
+
+    .layout-option {
+        width: 48%;
+        padding: 6px;
+    }
+
+    .layout-preview {
+        width: 40px;
+        height: 50px;
+    }
+
+    .color-box {
+        width: 30px;
+        height: 30px;
+    }
+
+    input[type="color"] {
+        width: 30px;
+        height: 30px;
+    }
+}
