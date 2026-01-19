@@ -408,6 +408,21 @@ body.dark-mode .quote-preview {
     cursor: pointer;
 }
 
+/* Hide photo mode */
+.quote-image.no-photo #quote-img {
+    display: none;
+}
+
+.quote-image.no-photo.layout-3 .quote-header,
+.quote-image.no-photo.layout-4 .quote-header {
+    flex-direction: row;
+    padding: 20px 40px;
+}
+
+.quote-image.no-photo.layout-5 .quote-header {
+    flex-direction: column;
+}
+
 .quote-header-text {
     flex: 1;
     display: flex;

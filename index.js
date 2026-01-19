@@ -16,6 +16,7 @@ const customColorBox = document.getElementById('custom-color');
 const lightTextToggle = document.getElementById('light-text-toggle');
 const bgSquareToggle = document.getElementById('bg-square-toggle');
 const themeToggle = document.getElementById('theme-toggle');
+const hidePhotoToggle = document.getElementById('hide-photo-toggle');
 
 let currentColor = '#8fc00c';
 let currentLayout = 'layout-1';
@@ -93,6 +94,12 @@ lightTextToggle.addEventListener('click', () => {
 bgSquareToggle.addEventListener('click', () => {
     bgSquareToggle.classList.toggle('active');
     quoteWrapper.classList.toggle('bg-square');
+});
+
+// Hide photo toggle
+hidePhotoToggle.addEventListener('click', () => {
+    hidePhotoToggle.classList.toggle('active');
+    quoteImage.classList.toggle('no-photo');
 });
 
 // Theme toggle
