@@ -1,3 +1,5 @@
+import { domToBlob } from 'https://unpkg.com/modern-screenshot@4.6.7/dist/index.mjs';
+
 const quoteImage = document.getElementById('quote-image');
 const quoteWrapper = document.getElementById('quote-wrapper');
 const bgSquareLayer = document.getElementById('bg-square-layer');
@@ -113,12 +115,10 @@ downloadBtn.addEventListener('click', async () => {
     // Capture the wrapper if bg-square is active, otherwise just the quote image
     const elementToCapture = quoteWrapper.classList.contains('bg-square') ? quoteWrapper : quoteImage;
     
-    const canvas = await html2canvas(elementToCapture, {
-        backgroundColor: null,
+    const blob = await domToBlob(elementToCapture, {
         scale: 4
     });
 
-    const blob = await new Promise(resolve => canvas.toBlob(resolve));
     saveAs(blob, 'quote-image.png');
 });
 

@@ -594,7 +594,9 @@ body.dark-mode .quote-preview {
 /* Background square styling */
 .quote-wrapper {
     position: relative;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bg-square-layer {
