@@ -19,6 +19,9 @@ const lightTextToggle = document.getElementById('light-text-toggle');
 const bgSquareToggle = document.getElementById('bg-square-toggle');
 const themeToggle = document.getElementById('theme-toggle');
 const hidePhotoToggle = document.getElementById('hide-photo-toggle');
+const fontSelect = document.getElementById('font-select');
+const fontSizeSlider = document.getElementById('font-size-slider');
+const fontSizeValue = document.getElementById('font-size-value');
 
 let currentColor = '#8fc00c';
 let currentLayout = 'layout-1';
@@ -102,6 +105,18 @@ bgSquareToggle.addEventListener('click', () => {
 hidePhotoToggle.addEventListener('click', () => {
     hidePhotoToggle.classList.toggle('active');
     quoteImage.classList.toggle('no-photo');
+});
+
+// Font selection
+fontSelect.addEventListener('change', () => {
+    quoteImage.style.fontFamily = fontSelect.value;
+});
+
+// Font size selection
+fontSizeSlider.addEventListener('input', () => {
+    const size = fontSizeSlider.value;
+    fontSizeValue.textContent = size + 'px';
+    textDisplay.style.fontSize = size + 'px';
 });
 
 // Theme toggle

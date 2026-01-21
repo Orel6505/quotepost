@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,700;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:ital,wght@0,400;0,700;1,400&family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&family=Pacifico&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=palette" />
 </head>
@@ -122,6 +125,39 @@
                         <input type="color" id="custom-color-input">
                         <label class="material-symbols-outlined" for="custom-color-input">palette</label>
                     </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="font-selection">Font Style</label>
+                <select id="font-select" class="font-select">
+                    <optgroup label="Serif Fonts">
+                        <option value="'Playfair Display', serif">Playfair Display</option>
+                        <option value="'Merriweather', serif">Merriweather</option>
+                        <option value="'Lora', serif">Lora</option>
+                        <option value="'Crimson Text', serif">Crimson Text</option>
+                        <option value="'Libre Baskerville', serif">Libre Baskerville</option>
+                    </optgroup>
+                    <optgroup label="Sans-Serif Fonts">
+                        <option value="'Roboto', sans-serif">Roboto</option>
+                        <option value="'Open Sans', sans-serif">Open Sans</option>
+                        <option value="'Montserrat', sans-serif">Montserrat</option>
+                        <option value="'Poppins', sans-serif">Poppins</option>
+                        <option value="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" selected>System Default</option>
+                    </optgroup>
+                    <optgroup label="Handwritten Fonts">
+                        <option value="'Dancing Script', cursive">Dancing Script</option>
+                        <option value="'Pacifico', cursive">Pacifico</option>
+                        <option value="'Caveat', cursive">Caveat</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="font-size">Font Size</label>
+                <div class="size-control">
+                    <input type="range" id="font-size-slider" min="14" max="32" value="18">
+                    <span id="font-size-value">18px</span>
                 </div>
             </div>
 

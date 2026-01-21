@@ -116,6 +116,78 @@ body.dark-mode label {
     color: #b0b0b0;
 }
 
+/* Font select dropdown */
+.font-select {
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1em;
+    font-family: inherit;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+body.dark-mode .font-select {
+    background: #1a1a2e;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+.font-select:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+/* Size control */
+.size-control {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.size-control input[type="range"] {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: #e0e0e0;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+body.dark-mode .size-control input[type="range"] {
+    background: #444;
+}
+
+.size-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #667eea;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.size-control input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.size-control input[type="range"]::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-purple);
+    cursor: pointer;
+    border: none;
+}
+
+#font-size-value {
+    min-width: 45px;
+    font-weight: 600;
+    color: #667eea;
+}
+
 input[type="text"],
 textarea {
     padding: 12px 16px;
