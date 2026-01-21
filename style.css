@@ -537,7 +537,7 @@ body.dark-mode .quote-preview {
     order: 2;
 }
 
-/* Layout 3: Full Width Image Top - Image spans full width, quote, then title+author */
+/* Layout 3: Full Width Image Top */
 .quote-image.layout-3 {
     padding: 0;
     gap: 0;
@@ -567,7 +567,7 @@ body.dark-mode .quote-preview {
     order: 3;
 }
 
-/* Layout 4: Full Width Image Bottom - Quote, title+author, then full-width image */
+/* Layout 4: Full Width Image Bottom */
 .quote-image.layout-4 {
     padding: 0;
     gap: 0;
@@ -598,7 +598,7 @@ body.dark-mode .quote-preview {
     order: 2;
 }
 
-/* Layout 5: Centered - Everything centered, image on top */
+/* Layout 5: Centered */
 .quote-image.layout-5 {
     align-items: center;
     text-align: center;
@@ -623,7 +623,7 @@ body.dark-mode .quote-preview {
     border-radius: 50%;
 }
 
-/* Layout 6: Minimalist - Small image, quote, compact info */
+/* Layout 6: Minimalist */
 .quote-image.layout-6 {
     gap: 20px;
 }
@@ -650,6 +650,375 @@ body.dark-mode .quote-preview {
 .quote-image.layout-6 .quote-text {
     order: 2;
     font-size: 1em;
+}
+
+/* Layout 7: Side by Side */
+.quote-image.layout-7 {
+    flex-direction: row;
+    width: 600px;
+    gap: 30px;
+}
+
+.quote-image.layout-7 .quote-header {
+    flex-direction: column;
+    order: 1;
+    flex-shrink: 0;
+}
+
+.quote-image.layout-7 .quote-header img {
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    object-fit: cover; /* FIX: Prevents squashed images */
+    flex-shrink: 0;    /* FIX: Prevents layout compression */
+}
+
+.quote-image.layout-7 .quote-header-text {
+    text-align: center;
+}
+
+.quote-image.layout-7 .quote-text {
+    order: 2;
+    display: flex;
+    align-items: center;
+}
+
+/* Layout 8: Quote Marks */
+.quote-image.layout-8 {
+    position: relative;
+    padding: 60px 50px;
+    text-align: center;
+}
+
+.quote-image.layout-8::before,
+.quote-image.layout-8::after {
+    font-size: 80px;
+    line-height: 1;
+    opacity: 0.3;
+    position: absolute;
+}
+
+.quote-image.layout-8::before {
+    content: '❝';
+    top: 10px;
+    left: 20px;
+}
+
+.quote-image.layout-8::after {
+    content: '❞';
+    bottom: 10px;
+    right: 20px;
+}
+
+.quote-image.layout-8 .quote-text {
+    order: 1;
+    font-size: 1.3em;
+}
+
+.quote-image.layout-8 .quote-header {
+    order: 2;
+    justify-content: center;
+}
+
+.quote-image.layout-8 .quote-header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+/* Layout 9: Overlay */
+.quote-image.layout-9 {
+    position: relative;
+    padding: 0;
+    min-height: 350px;
+    overflow: hidden;
+}
+
+.quote-image.layout-9 .quote-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+}
+
+.quote-image.layout-9 .quote-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.quote-image.layout-9 .quote-header-text {
+    display: none;
+}
+
+.quote-image.layout-9::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--quote-bg-color);
+    opacity: 0.7;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+.quote-image.layout-9 .quote-text {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    text-align: center;
+    font-size: 1.4em;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+}
+
+/* Layout 10: Polaroid */
+.quote-image.layout-10 {
+    background: white;
+    padding: 20px 20px 40px 20px;
+    gap: 20px;
+}
+
+.quote-image.layout-10 .quote-header {
+    order: 1;
+    flex-direction: column;
+    gap: 0;
+}
+
+.quote-image.layout-10 .quote-header img {
+    width: 100%;
+    height: 250px;
+    border-radius: 0;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+    object-fit: cover; /* FIX */
+}
+
+.quote-image.layout-10 .quote-header-text {
+    display: none;
+}
+
+.quote-image.layout-10 .quote-text {
+    order: 2;
+    text-align: center;
+    color: #333;
+    font-size: 1.1em;
+}
+
+/* Layout 11: Speech Bubble */
+.quote-image.layout-11 {
+    background: transparent;
+    box-shadow: none;
+    gap: 15px;
+}
+
+.quote-image.layout-11 .quote-text {
+    order: 1;
+    background: var(--quote-bg-color);
+    padding: 30px;
+    border-radius: 20px;
+    position: relative;
+    color: white;
+}
+
+.quote-image.layout-11 .quote-text::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    border-width: 15px 15px 0 0;
+    border-style: solid;
+    border-color: var(--quote-bg-color) transparent transparent transparent;
+}
+
+.quote-image.layout-11 .quote-header {
+    order: 2;
+    padding-left: 10px;
+}
+
+.quote-image.layout-11 .quote-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* Layout 12: Story */
+.quote-image.layout-12 {
+    width: 300px;
+    min-height: 500px;
+    text-align: center;
+    justify-content: center;
+    padding: 50px 30px;
+}
+
+.quote-image.layout-12 .quote-header {
+    flex-direction: column;
+    order: 1;
+}
+
+.quote-image.layout-12 .quote-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto;
+    object-fit: cover; /* FIX */
+}
+
+.quote-image.layout-12 .quote-header-text {
+    text-align: center;
+}
+
+.quote-image.layout-12 .quote-text {
+    order: 2;
+    font-size: 1.3em;
+}
+
+/* Layout 13: Drop Cap */
+.quote-image.layout-13 .quote-text {
+    order: 1;
+}
+
+.quote-image.layout-13 .quote-text::first-letter {
+    float: left;
+    font-size: 4em;
+    line-height: 0.8;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+.quote-image.layout-13 .quote-header {
+    order: 2;
+}
+
+/* Layout 14: Border Frame */
+.quote-image.layout-14 {
+    border: 4px double currentColor;
+    padding: 50px;
+    position: relative;
+}
+
+.quote-image.layout-14::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid currentColor;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.quote-image.layout-14 .quote-text {
+    order: 1;
+    text-align: center;
+}
+
+.quote-image.layout-14 .quote-header {
+    order: 2;
+    justify-content: center;
+}
+
+.quote-image.layout-14 .quote-header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover; /* FIX */
+}
+
+/* Layout 15: Diagonal Split */
+.quote-image.layout-15 {
+    flex-direction: row;
+    width: 600px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.quote-image.layout-15 .quote-header {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 45%;
+    clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);
+}
+
+.quote-image.layout-15 .quote-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+}
+
+.quote-image.layout-15 .quote-header-text {
+    display: none;
+}
+
+.quote-image.layout-15 .quote-text {
+    margin-left: 35%;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    min-height: 300px;
+}
+
+/* Layout 16: Gradient Blend */
+.quote-image.layout-16 {
+    position: relative;
+    padding: 0;
+    min-height: 350px;
+    overflow: hidden;
+}
+
+.quote-image.layout-16 .quote-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0;
+}
+
+.quote-image.layout-16 .quote-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.quote-image.layout-16 .quote-header-text {
+    display: none;
+}
+
+.quote-image.layout-16::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, var(--quote-bg-color) 30%, transparent 70%);
+    z-index: 1;
+    border-radius: 20px;
+}
+
+.quote-image.layout-16 .quote-text {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    max-width: 60%;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    color: white;
 }
 
 .quote-title {

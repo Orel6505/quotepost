@@ -57,10 +57,16 @@ layoutOptions.forEach(option => {
         layoutOptions.forEach(opt => opt.classList.remove('selected'));
         option.classList.add('selected');
 
-        // Remove all layout classes
+        // Remove all layout classes but preserve state classes
+        const hasLightText = quoteImage.classList.contains('light-text');
+        const hasNoPhoto = quoteImage.classList.contains('no-photo');
+        
         quoteImage.className = 'quote-image';
-        if (lightTextToggle.classList.contains('active')) {
+        if (hasLightText) {
             quoteImage.classList.add('light-text');
+        }
+        if (hasNoPhoto) {
+            quoteImage.classList.add('no-photo');
         }
 
         // Add selected layout
