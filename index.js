@@ -122,15 +122,15 @@ downloadBtn.addEventListener('click', async () => {
     saveAs(blob, 'quote-image.png');
 });
 
-// Paste as plain text in contenteditable
+// Paste as plain text in contenteditable (strips formatting)
 document.querySelectorAll('[contenteditable]').forEach(field => {
     field.addEventListener('paste', (e) => {
         e.preventDefault();
         const text = e.clipboardData.getData('text/plain');
         const selection = globalThis.getSelection();
         if (selection.rangeCount > 0) {
-            selection.deleteContents();
             selection.getRangeAt(0).insertNode(document.createTextNode(text));
+            selection.collapseToEnd();
         }
     });
 });
