@@ -1,4 +1,11 @@
-import { domToBlob } from 'https://unpkg.com/modern-screenshot@4.6.7/dist/index.mjs';
+// Try to import screenshot library, but continue if it fails
+let domToBlob;
+try {
+    const module = await import('https://unpkg.com/modern-screenshot@4.6.7/dist/index.mjs');
+    domToBlob = module.domToBlob;
+} catch (e) {
+    console.warn('Screenshot library not available:', e);
+}
 
 const quoteImage = document.getElementById('quote-image');
 const quoteWrapper = document.getElementById('quote-wrapper');
@@ -7,11 +14,16 @@ const previewContainer = document.getElementById('quote-preview');
 const layoutOptions = document.querySelectorAll('.layout-option');
 const downloadBtn = document.getElementById('download-btn');
 
-const titleDisplay = document.getElementById('title-display');
-const authorDisplay = document.getElementById('author-display');
+// Content inputs
 const textDisplay = document.getElementById('text-display');
+const textDisplayPreview = document.getElementById('text-display-preview');
+const titleInput = document.getElementById('title-input');
+const titleDisplay = document.getElementById('title-display');
+const authorInput = document.getElementById('author-input');
+const authorDisplay = document.getElementById('author-display');
 const quoteImg = document.getElementById('quote-img');
 const fileInput = document.getElementById('file-input');
+const uploadImageBtn = document.getElementById('upload-image-btn');
 const customColorInput = document.getElementById('custom-color-input');
 const customColorBox = document.getElementById('custom-color');
 
@@ -23,6 +35,11 @@ const fontSelect = document.getElementById('font-select');
 const fontSizeSlider = document.getElementById('font-size-slider');
 const fontSizeValue = document.getElementById('font-size-value');
 
+// Navigation
+const sidebarNavItems = document.querySelectorAll('.sidebar .nav-item');
+const mobileNavBtns = document.querySelectorAll('.mobile-nav .nav-btn');
+const editorSections = document.querySelectorAll('.editor-section');
+
 let currentColor = '#8fc00c';
 let currentLayout = 'layout-1';
 let uploadedImage = null;
@@ -33,11 +50,29 @@ const updateQuoteImage = () => {
     bgSquareLayer.style.backgroundColor = currentColor;
 };
 
+// Sync text input to preview
+textDisplay.addEventListener('input', () => {
+    textDisplayPreview.textContent = textDisplay.value;
+});
+
+// Sync title input to preview
+titleInput.addEventListener('input', () => {
+    titleDisplay.textContent = titleInput.value;
+});
+
+// Sync author input to preview
+authorInput.addEventListener('input', () => {
+    authorDisplay.textContent = authorInput.value;
+});
+
 // File upload
-quoteImg.addEventListener('click', () => {
+uploadImageBtn.addEventListener('click', () => {
     fileInput.click();
 });
 
+quoteImg.addEventListener('click', () => {
+    fileInput.click();
+});
 
 fileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -49,6 +84,44 @@ fileInput.addEventListener('change', (e) => {
         };
         reader.readAsDataURL(file);
     }
+});
+
+// Navigation handling (Desktop Sidebar)
+sidebarNavItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const section = item.dataset.section;
+        
+        // Update active state
+        sidebarNavItems.forEach(nav => nav.classList.remove('active'));
+        item.classList.add('active');
+        
+        // Show corresponding section
+        editorSections.forEach(sec => {
+            sec.classList.remove('active');
+            if (sec.id === `${section}-section`) {
+                sec.classList.add('active');
+            }
+        });
+    });
+});
+
+// Navigation handling (Mobile Bottom Nav)
+mobileNavBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const section = btn.dataset.section;
+        
+        // Update active state
+        mobileNavBtns.forEach(nav => nav.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Show corresponding section
+        editorSections.forEach(sec => {
+            sec.classList.remove('active');
+            if (sec.id === `${section}-section`) {
+                sec.classList.add('active');
+            }
+        });
+    });
 });
 
 // Layout selection
@@ -122,7 +195,7 @@ fontSelect.addEventListener('change', () => {
 fontSizeSlider.addEventListener('input', () => {
     const size = fontSizeSlider.value;
     fontSizeValue.textContent = size + 'px';
-    textDisplay.style.fontSize = size + 'px';
+    textDisplayPreview.style.fontSize = size + 'px';
 });
 
 // Theme toggle
@@ -133,27 +206,23 @@ themeToggle.addEventListener('click', () => {
 
 // Download
 downloadBtn.addEventListener('click', async () => {
+    if (!domToBlob) {
+        alert('Download feature requires external library. Please ensure internet connection.');
+        return;
+    }
+    
     // Capture the wrapper if bg-square is active, otherwise just the quote image
     const elementToCapture = quoteWrapper.classList.contains('bg-square') ? quoteWrapper : quoteImage;
     
-    const blob = await domToBlob(elementToCapture, {
-        scale: 4
-    });
-
-    saveAs(blob, 'quote-image.png');
-});
-
-// Paste as plain text in contenteditable (strips formatting)
-document.querySelectorAll('[contenteditable]').forEach(field => {
-    field.addEventListener('paste', (e) => {
-        e.preventDefault();
-        const text = e.clipboardData.getData('text/plain');
-        const selection = globalThis.getSelection();
-        if (selection.rangeCount > 0) {
-            selection.getRangeAt(0).insertNode(document.createTextNode(text));
-            selection.collapseToEnd();
-        }
-    });
+    try {
+        const blob = await domToBlob(elementToCapture, {
+            scale: 4
+        });
+        saveAs(blob, 'quote-image.png');
+    } catch (error) {
+        console.error('Download failed:', error);
+        alert('Download failed. Please try again.');
+    }
 });
 
 updateQuoteImage();
