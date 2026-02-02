@@ -63,23 +63,27 @@
             <div class="editor-section active" id="content-section">
                 <div class="form-group">
                     <label for="text-display">QUOTE TEXT</label>
-                    <textarea class="quote-text-input" id="text-display">The only way to do great work is to love what you do.</textarea>
+                    <div class="quote-text-editable" contenteditable="true" id="text-display">The only way to do great work is to love what you do.</div>
                 </div>
                 <div class="form-group">
-                    <label for="title-input">TITLE</label>
+                    <label for="title-display">TITLE</label>
                     <input type="text" class="text-input" id="title-input" value="Daily Inspiration">
                 </div>
                 <div class="form-group">
-                    <label for="author-input">AUTHOR</label>
+                    <label for="author-display">AUTHOR</label>
                     <input type="text" class="text-input" id="author-input" value="Anonymous">
                 </div>
                 <div class="form-group">
                     <label>IMAGE</label>
                     <button class="upload-image-btn" id="upload-image-btn">Click to Upload Image</button>
-                    <div class="preview-container hidden" id="preview-container"></div>
+                    <div class="preview-container" id="preview-container"></div>
                 </div>
             </div>
 
+            <!-- Layout Section -->
+            <div class="editor-section" id="layout-section">
+                <div class="input-group">
+                    <label>LAYOUT STYLE</label>
             <!-- Layout Section -->
             <div class="editor-section" id="layout-section">
                 <div class="input-group">
@@ -393,6 +397,284 @@
                 <span class="nav-label-mobile">Options</span>
             </button>
         </nav>
+    </div>
+    <script type="module" src="index.js"></script>
+</body>
+            <div class="quote-wrapper" id="quote-wrapper">
+                <div class="bg-square-layer" id="bg-square-layer"></div>
+                <div class="quote-image layout-1" id="quote-image">
+                    <div class="quote-text" contenteditable="true" id="text-display">The only way to do great work is to
+                        love what you do.</div>
+                    <div class="quote-header">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect fill='%23ddd' width='80' height='80'/%3E%3Ctext x='50%25' y='50%25' font-size='30' text-anchor='middle' dominant-baseline='middle' fill='%23999'%3E📷%3C/text%3E%3C/svg%3E"
+                            alt="quote" id="quote-img">
+                        <div class="quote-header-text">
+                            <div class="quote-title" contenteditable="true" id="title-display">Daily Inspiration</div>
+                            <div class="quote-author" contenteditable="true" id="author-display">Anonymous</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="input-group">
+                <label for="layout-selection">Layout Style</label>
+                <div class="layout-selection">
+                    <div class="layout-option selected" data-layout="layout-1">
+                        <div class="layout-preview">
+                            <div class="layout-preview-text" style="height: 20px;"></div>
+                            <div style="display: flex; gap: 3px;">
+                                <div class="layout-preview-img" style="width: 20px; height: 20px;"></div>
+                                <div style="flex: 1;">
+                                    <div class="layout-preview-text"></div>
+                                    <div class="layout-preview-text"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layout-name">Classic</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-2">
+                        <div class="layout-preview">
+                            <div style="display: flex; gap: 3px;">
+                                <div class="layout-preview-img" style="width: 20px; height: 20px;"></div>
+                                <div style="flex: 1;">
+                                    <div class="layout-preview-text"></div>
+                                    <div class="layout-preview-text"></div>
+                                </div>
+                            </div>
+                            <div class="layout-preview-text" style="height: 20px;"></div>
+                        </div>
+                        <div class="layout-name">Header First</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-3">
+                        <div class="layout-preview">
+                            <div class="layout-preview-img" style="width: 100%; height: 25px;"></div>
+                            <div class="layout-preview-text" style="height: 15px; margin: 0 3px;"></div>
+                            <div class="layout-preview-text" style="margin: 0 3px;"></div>
+                            <div class="layout-preview-text" style="margin: 0 3px;"></div>
+                        </div>
+                        <div class="layout-name">Full Top</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-4">
+                        <div class="layout-preview">
+                            <div class="layout-preview-text" style="height: 15px; margin: 0 3px;"></div>
+                            <div class="layout-preview-text" style="margin: 0 3px;"></div>
+                            <div class="layout-preview-text" style="margin: 0 3px;"></div>
+                            <div class="layout-preview-img" style="width: 100%; height: 25px;"></div>
+                        </div>
+                        <div class="layout-name">Full Bottom</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-5">
+                        <div class="layout-preview">
+                            <div class="layout-preview-img"
+                                style="width: 25px; height: 25px; margin: 0 auto; border-radius: 50%;"></div>
+                            <div class="layout-preview-text" style="margin: 0 3px;"></div>
+                            <div class="layout-preview-text" style="height: 15px; margin: 0 3px;"></div>
+                        </div>
+                        <div class="layout-name">Centered</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-6">
+                        <div class="layout-preview">
+                            <div style="display: flex; gap: 3px;">
+                                <div class="layout-preview-img" style="width: 15px; height: 15px;"></div>
+                                <div style="flex: 1;">
+                                    <div class="layout-preview-text" style="height: 3px;"></div>
+                                    <div class="layout-preview-text" style="height: 3px;"></div>
+                                </div>
+                            </div>
+                            <div class="layout-preview-text" style="height: 18px;"></div>
+                        </div>
+                        <div class="layout-name">Minimalist</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-7">
+                        <div class="layout-preview">
+                            <div style="display: flex; gap: 3px; height: 100%;">
+                                <div class="layout-preview-img" style="width: 25px; height: 100%;"></div>
+                                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 3px;">
+                                    <div class="layout-preview-text" style="height: 12px;"></div>
+                                    <div class="layout-preview-text"></div>
+                                    <div class="layout-preview-text"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layout-name">Side by Side</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-8">
+                        <div class="layout-preview">
+                            <div style="font-size: 16px; line-height: 1; color: #667eea;">❝</div>
+                            <div class="layout-preview-text" style="height: 20px; margin: 0 8px;"></div>
+                            <div style="font-size: 16px; line-height: 1; color: #667eea; text-align: right;">❞</div>
+                            <div class="layout-preview-text" style="margin: 3px auto 0; width: 70%;"></div>
+                        </div>
+                        <div class="layout-name">Quote Marks</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-9">
+                        <div class="layout-preview" style="position: relative; padding: 0;">
+                            <div class="layout-preview-img" style="width: 100%; height: 100%; position: absolute; opacity: 0.5;"></div>
+                            <div style="position: relative; z-index: 1; padding: 5px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                                <div class="layout-preview-text" style="background: rgba(255,255,255,0.8); height: 15px;"></div>
+                                <div class="layout-preview-text" style="background: rgba(255,255,255,0.8); margin-top: 3px;"></div>
+                            </div>
+                        </div>
+                        <div class="layout-name">Overlay</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-10">
+                        <div class="layout-preview" style="background: white; border: 3px solid #ddd;">
+                            <div class="layout-preview-img" style="width: calc(100% + 10px); height: 35px; margin: -5px -5px 5px -5px;"></div>
+                            <div class="layout-preview-text" style="height: 10px;"></div>
+                            <div class="layout-preview-text"></div>
+                        </div>
+                        <div class="layout-name">Polaroid</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-11">
+                        <div class="layout-preview">
+                            <div style="background: #667eea; border-radius: 8px 8px 8px 0; padding: 5px; flex: 1;">
+                                <div class="layout-preview-text" style="background: rgba(255,255,255,0.5); height: 12px;"></div>
+                                <div class="layout-preview-text" style="background: rgba(255,255,255,0.5);"></div>
+                            </div>
+                            <div style="display: flex; gap: 3px; margin-top: 3px;">
+                                <div class="layout-preview-img" style="width: 15px; height: 15px;"></div>
+                                <div class="layout-preview-text" style="flex: 1;"></div>
+                            </div>
+                        </div>
+                        <div class="layout-name">Speech Bubble</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-12">
+                        <div class="layout-preview" style="width: 40px; height: 80px; margin: 0 auto;">
+                            <div class="layout-preview-img" style="width: 20px; height: 20px; margin: 0 auto;"></div>
+                            <div class="layout-preview-text" style="height: 20px; margin: 3px 0;"></div>
+                            <div class="layout-preview-text"></div>
+                            <div class="layout-preview-text"></div>
+                        </div>
+                        <div class="layout-name">Story</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-13">
+                        <div class="layout-preview">
+                            <div style="display: flex; gap: 2px;">
+                                <div style="font-size: 20px; font-weight: bold; color: #667eea; line-height: 1;">T</div>
+                                <div style="flex: 1;">
+                                    <div class="layout-preview-text" style="height: 8px;"></div>
+                                    <div class="layout-preview-text"></div>
+                                </div>
+                            </div>
+                            <div class="layout-preview-text" style="margin-top: 3px;"></div>
+                            <div class="layout-preview-text"></div>
+                        </div>
+                        <div class="layout-name">Drop Cap</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-14">
+                        <div class="layout-preview" style="border: 3px double #667eea; padding: 3px;">
+                            <div class="layout-preview-text" style="height: 15px;"></div>
+                            <div class="layout-preview-text"></div>
+                            <div style="display: flex; gap: 3px; margin-top: 3px;">
+                                <div class="layout-preview-img" style="width: 12px; height: 12px;"></div>
+                                <div class="layout-preview-text" style="flex: 1;"></div>
+                            </div>
+                        </div>
+                        <div class="layout-name">Border Frame</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-15">
+                        <div class="layout-preview" style="position: relative; overflow: hidden; padding: 0;">
+                            <div class="layout-preview-img" style="position: absolute; width: 70%; height: 100%; clip-path: polygon(0 0, 100% 0, 70% 100%, 0 100%);"></div>
+                            <div style="position: relative; margin-left: 35px; padding: 5px;">
+                                <div class="layout-preview-text" style="height: 12px;"></div>
+                                <div class="layout-preview-text"></div>
+                                <div class="layout-preview-text"></div>
+                            </div>
+                        </div>
+                        <div class="layout-name">Diagonal</div>
+                    </div>
+                    <div class="layout-option" data-layout="layout-16">
+                        <div class="layout-preview" style="position: relative; padding: 0; overflow: hidden;">
+                            <div class="layout-preview-img" style="width: 100%; height: 100%; position: absolute;"></div>
+                            <div style="position: absolute; width: 100%; height: 100%; background: linear-gradient(to right, var(--quote-bg-color, #667eea) 40%, transparent);"></div>
+                            <div style="position: relative; z-index: 1; padding: 5px;">
+                                <div class="layout-preview-text" style="background: rgba(255,255,255,0.9); height: 12px; width: 60%;"></div>
+                                <div class="layout-preview-text" style="background: rgba(255,255,255,0.9); width: 50%;"></div>
+                            </div>
+                        </div>
+                        <div class="layout-name">Gradient Blend</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="color-selection">Background Color</label>
+                <div class="color-selection" id="color-selection">
+                    <div class="color-box" style="background: #008fd1" data-color="#008fd1"></div>
+                    <div class="color-box" style="background: #549aab" data-color="#549aab"></div>
+                    <div class="color-box selected" style="background: #8fc00c" data-color="#8fc00c"></div>
+                    <div class="color-box" style="background: #729962" data-color="#729962"></div>
+                    <div class="color-box" style="background: #a2904e" data-color="#a2904e"></div>
+                    <div class="color-box" style="background: #cd6800" data-color="#cd6800"></div>
+                    <div class="color-box" style="background: #fc302f" data-color="#fc302f"></div>
+                    <div class="color-box" id="custom-color">
+                        <input type="color" id="custom-color-input">
+                        <label class="material-symbols-outlined" for="custom-color-input">palette</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="font-selection">Font Style</label>
+                <select id="font-select" class="font-select">
+                    <optgroup label="Serif Fonts">
+                        <option value="'Playfair Display', serif">Playfair Display</option>
+                        <option value="'Merriweather', serif">Merriweather</option>
+                        <option value="'Lora', serif">Lora</option>
+                        <option value="'Crimson Text', serif">Crimson Text</option>
+                        <option value="'Libre Baskerville', serif">Libre Baskerville</option>
+                    </optgroup>
+                    <optgroup label="Sans-Serif Fonts">
+                        <option value="'Roboto', sans-serif">Roboto</option>
+                        <option value="'Open Sans', sans-serif">Open Sans</option>
+                        <option value="'Montserrat', sans-serif">Montserrat</option>
+                        <option value="'Poppins', sans-serif">Poppins</option>
+                        <option value="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" selected>System Default</option>
+                    </optgroup>
+                    <optgroup label="Handwritten Fonts">
+                        <option value="'Dancing Script', cursive">Dancing Script</option>
+                        <option value="'Pacifico', cursive">Pacifico</option>
+                        <option value="'Caveat', cursive">Caveat</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="font-size">Font Size</label>
+                <div class="size-control">
+                    <input type="range" id="font-size-slider" min="14" max="32" value="18">
+                    <span id="font-size-value">18px</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="options">Options</label>
+                <div class="switches">
+                    <div class="switch-container" id="light-text-toggle">
+                        <div class="switch"></div>
+                        <span>Light text</span>
+                    </div>
+                    <div class="switch-container" id="bg-square-toggle">
+                        <div class="switch"></div>
+                        <span>Background square</span>
+                    </div>
+                    <div class="switch-container" id="hide-photo-toggle">
+                        <div class="switch"></div>
+                        <span>Hide photo</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="download-btn" id="download-btn">Download Quote Image</button>
+        <footer class="footer">
+            <div>
+                <h3>Made by</h3>
+                <a href="https://github.com/Orel6505" target="_blank"><h3>Orel Yosupov</h3></a>
+            </div>
+        </footer>
     </div>
     <script type="module" src="index.js"></script>
 </body>
